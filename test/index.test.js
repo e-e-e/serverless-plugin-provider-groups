@@ -1,7 +1,7 @@
 /* eslint-env node, mocha */
 const chai = require('chai');
 const sinon = require('sinon');
-const path = require('path');
+// const path = require('path');
 const { getInstalledPathSync } = require('get-installed-path');
 const ProviderGroupsPlugin = require('../index');
 

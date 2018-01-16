@@ -15,7 +15,6 @@ function arrayIsSubset(set, subset) {
 }
 
 function mergeIamRoles(iamRoleStatements, newRoleStatements) {
-  if (!iamRoleStatements) iamRoleStatements
   newRoleStatements.forEach((newStatement) => {
     // check against existing role statements
     // is it included in any of them
