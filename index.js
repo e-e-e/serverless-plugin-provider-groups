@@ -21,6 +21,8 @@ function mergeIamRoles(iamRoleStatements, newRoleStatements) {
     const coveredByAnotherStatement = iamRoleStatements.some((statement) => {
       const sameEffect = statement.Effect === newStatement.Effect;
       const sameActions = arrayIsSubset(statement.Action, newStatement.Action);
+      if (typeof statement.Resource === 'string') statement.Resource = [statement.Resource]
+      if (typeof newStatement.Resource === 'string') newStatement.Resource = [newStatement.Resource]
       const sameResources = arrayIsSubset(statement.Resource, newStatement.Resource);
       return (sameEffect && sameActions && sameResources);
     });
@@ -38,6 +40,11 @@ function injectGroups(serverless) {
   serverless.cli.log('Attempting to inject provider groups...');
   const functions = serverless.service.functions;
   const groups = serverless.service.custom.providerGroups;
+  if (!groups) {
+    serverless.cli.log('No provider groups found!');
+    serverless.cli.log('Are you sure you have configured the provider groups plug-in correctly?');
+    return;
+  }
   if (!serverless.service.provider.iamRoleStatements) serverless.service.provider.iamRoleStatements = [];
   const iamRoleStatements = serverless.service.provider.iamRoleStatements;
   const iamGroupsToMerge = {};
