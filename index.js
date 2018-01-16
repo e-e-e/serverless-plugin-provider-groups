@@ -21,8 +21,8 @@ function mergeIamRoles(iamRoleStatements, newRoleStatements) {
     const coveredByAnotherStatement = iamRoleStatements.some((statement) => {
       const sameEffect = statement.Effect === newStatement.Effect;
       const sameActions = arrayIsSubset(statement.Action, newStatement.Action);
-      if (typeof statement.Resource === 'string') statement.Resource = [statement.Resource]
-      if (typeof newStatement.Resource === 'string') newStatement.Resource = [newStatement.Resource]
+      if (typeof statement.Resource === 'string') statement.Resource = [statement.Resource];
+      if (typeof newStatement.Resource === 'string') newStatement.Resource = [newStatement.Resource];
       const sameResources = arrayIsSubset(statement.Resource, newStatement.Resource);
       return (sameEffect && sameActions && sameResources);
     });

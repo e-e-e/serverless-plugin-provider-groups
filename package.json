@@ -1,6 +1,6 @@
 {
   "name": "serverless-plugin-provider-groups",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A plugin to allow management of grouped settings within large serverless projects",
   "main": "index.js",
   "scripts": {
